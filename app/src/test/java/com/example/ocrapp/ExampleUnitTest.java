@@ -1,4 +1,4 @@
-package com.example.receiptchecker;
+package com.example.ocrapp;
 
 import org.junit.Test;
 
