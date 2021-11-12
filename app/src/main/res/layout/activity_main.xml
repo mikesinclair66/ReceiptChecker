@@ -16,7 +16,7 @@
             android:id="@+id/text_data"
             android:textSize="22sp"
             android:textColor="@color/black"
-            android:text="hello! capture or choose image for ocr!"
+            android:text="Receipt Image to Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </ScrollView>
