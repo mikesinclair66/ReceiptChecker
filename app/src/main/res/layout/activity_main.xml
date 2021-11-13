@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_margin="8dp">
-        <TextView
+        <EditText
             android:id="@+id/text_data"
             android:textSize="22sp"
             android:textColor="@color/black"
@@ -40,6 +40,12 @@
             android:layout_weight="1"
             android:text="Copy Text"
             android:layout_margin="8dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Activity 2"
+            android:id="@+id/button_act2" />
     </LinearLayout>
 
 

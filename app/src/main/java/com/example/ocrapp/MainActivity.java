@@ -30,7 +30,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    Button button_capture, button_copy;
+    Button button_capture, button_copy, button_act2;
     TextView textview_data;
     Bitmap bitmap;
     private static final int REQUEST_CAMERA_CODE = 100;
@@ -46,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
         button_capture = findViewById(R.id.button_capture);
         button_copy = findViewById(R.id.button_copy);
         textview_data = findViewById(R.id.text_data);
+        button_act2 = (Button) findViewById(R.id.button_act2);
+
+        button_act2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+            }
+        });
+
+
 
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{
@@ -67,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 copyToClipBoard(scanned_text);
             }
         });
+    }
+    public void openActivity2() {
+        Intent intent = new Intent(this, ReceiptActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -101,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             textview_data.setText(stringBuilder.toString());
+            System.out.println("THIS IS THE STRING: " + stringBuilder);
             button_capture.setText("Retake");
             button_copy.setVisibility(View.VISIBLE);
         }
