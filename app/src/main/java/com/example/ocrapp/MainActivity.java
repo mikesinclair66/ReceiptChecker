@@ -28,6 +28,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Button button_capture, button_copy, button_act2;
@@ -108,11 +109,26 @@ public class MainActivity extends AppCompatActivity {
             Frame frame = new Frame.Builder().setBitmap(bitmap).build();
             SparseArray<TextBlock> textBlockSparseArray = recognizer.detect(frame);
             StringBuilder stringBuilder = new StringBuilder();
+            ArrayList<Double> prices = new ArrayList<>();
+            ArrayList<String> dates = new ArrayList<>();
             for (int i=0; i<textBlockSparseArray.size(); i++){
                 TextBlock textBlock = textBlockSparseArray.valueAt(i);
                 stringBuilder.append(textBlock.getValue());
                 stringBuilder.append("\n");
-
+            }
+            ParseTest.useRegexForPrices(stringBuilder.toString(), prices);
+            if (!prices.isEmpty()) {
+                double highest = ParseTest.returnHighestDouble(prices);
+                System.out.println("highest: " + highest);
+            } else {
+                System.out.println("prices is empty");
+            }
+            ParseTest.useRegexForDate(stringBuilder.toString(), dates);
+            if (!dates.isEmpty()) {
+                String date = dates.get(0);
+                System.out.println("date: " + date);
+            } else {
+                System.out.println("date is empty");
             }
             textview_data.setText(stringBuilder.toString());
             System.out.println("THIS IS THE STRING: " + stringBuilder);
