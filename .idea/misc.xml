@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Raziq/AndroidStudioProjects/OCRApp/app/src/main/res/layout/activity_edit.xml" value="0.264" />
         <entry key="..\:/Users/Raziq/AndroidStudioProjects/OCRApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Raziq/AndroidStudioProjects/OCRApp/app/src/main/res/layout/activity_receipt.xml" value="0.264" />
+        <entry key="..\:/Users/Raziq/AndroidStudioProjects/OCRApp/app/src/main/res/layout/activity_receipt.xml" value="0.1" />
       </map>
     </option>
   </component>

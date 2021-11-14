@@ -1,6 +1,7 @@
 package com.example.ocrapp;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.SparseArray;
@@ -41,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
     public static double recTotal = 0;
     //public String recDate = null;
 
+    public static final String MyPREFERENCES = "Receipt" ;
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
 
         button_capture = findViewById(R.id.button_capture);
         button_copy = findViewById(R.id.button_copy);
@@ -73,10 +80,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button_copy.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                String scanned_text = textview_data.getText().toString();
-                copyToClipBoard(scanned_text);
+                saveReceipt(sp);
+                openActivity2();
             }
         });
     }
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -101,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void getTextFromImage(Bitmap bitmap){
 
         double highest = 0;
@@ -114,45 +124,52 @@ public class MainActivity extends AppCompatActivity {
             Frame frame = new Frame.Builder().setBitmap(bitmap).build();
             SparseArray<TextBlock> textBlockSparseArray = recognizer.detect(frame);
             StringBuilder stringBuilder = new StringBuilder();
+
             ArrayList<Double> prices = new ArrayList<>();
             ArrayList<String> dates = new ArrayList<>();
+
             for (int i=0; i<textBlockSparseArray.size(); i++){
                 TextBlock textBlock = textBlockSparseArray.valueAt(i);
                 stringBuilder.append(textBlock.getValue());
                 stringBuilder.append("\n");
             }
+
             ParseTest.useRegexForPrices(stringBuilder.toString(), prices);
             if (!prices.isEmpty()) {
                 highest = ParseTest.returnHighestDouble(prices);
                 setTotal(highest);
                 System.out.println("highest: " + highest);
             } else {
+                setTotal(0);
                 System.out.println("prices is empty");
             }
-            ParseTest.useRegexForDate(stringBuilder.toString(), dates);
+
+            ParseTest.useRegexForDates(stringBuilder.toString(), dates);
             if (!dates.isEmpty()) {
                 date = dates.get(0);
                 setDate(date);
                 System.out.println("date: " + date);
             } else {
+                setDate("empty");
                 System.out.println("date is empty");
             }
+
+            for (String i : dates) {
+                i = ParseTest.formatDate(i);
+            }
+
             textview_data.setText(stringBuilder.toString());
             System.out.println("THIS IS THE STRING: " + stringBuilder);
-
-            //ReceiptActivity.AddReceipt();
-
             button_capture.setText("Retake");
             button_copy.setVisibility(View.VISIBLE);
-
         }
     }
 
-    public void setTotal(double x){
+    public static void setTotal(double x){
         recTotal = x;
     }
 
-    public void setDate(String x){
+    public static void setDate(String x){
         recDate = x;
     }
 
@@ -160,14 +177,15 @@ public class MainActivity extends AppCompatActivity {
         return recTotal;
     }
 
-    public static String getDate(){
-        return recDate;
-    }
+    public static String getDate(){ return recDate; }
 
-    private void copyToClipBoard(String text){
-        ClipboardManager clipBoard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("Copied data", text);
-        clipBoard.setPrimaryClip(clip);
-        Toast.makeText(MainActivity.this,"Copied to clipboard!",Toast.LENGTH_SHORT).show();
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void saveReceipt(SharedPreferences pref){
+        if (getTotal() != 0 && getDate() != null){
+            SaveReceipt.AddReceipt(pref,getTotal(),getDate());
+        }
+        setTotal(0);
+        setDate(null);
+
     }
 }

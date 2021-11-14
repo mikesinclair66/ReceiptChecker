@@ -8,68 +8,39 @@
     tools:context=".ReceiptActivity">
 
     <ScrollView
+        android:id="@+id/receipt_scroll_v"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/total_price_bar"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="-2dp">
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:paddingBottom="0dp"
+        android:background="@color/purple_500">
+
 
         <LinearLayout
             android:id="@+id/text_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_margin="20dp"
-            android:background="@color/purple_500"
+            android:padding="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/receipt_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Receipt Number"
-                android:textColor="@color/white"
-                android:textSize="30dp" />
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price"
-                android:textColor="@color/white"
-                android:textSize="30dp" />
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textColor="@color/white"
-                android:textSize="30dp" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:text="DELETE"
-                android:textSize="20dp"
-                android:id="@+id/delete"/>
 
         </LinearLayout>
 
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/total_price_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linear_holder"
@@ -77,7 +48,7 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="Total Price:"
@@ -90,15 +61,16 @@
 
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/price_total"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="999.99"
             android:background="@color/purple_500"
             android:textColor="@color/white"
             android:textSize="30dp"/>
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linear_holder"
@@ -107,19 +79,13 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/button_capture"
+            android:id="@+id/button_new_receipt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="Capture" />
+            android:text="Capture New Receipt" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:text="Activity 2"
-            android:id="@+id/button_act2" />
+
     </LinearLayout>
 </RelativeLayout>

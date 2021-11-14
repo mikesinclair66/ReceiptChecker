@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Capture"
+            android:text="Capture a Receipt"
             android:layout_margin="8dp"/>
         <Button
             android:visibility="gone"
@@ -38,14 +38,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Copy Text"
+            android:text="Save Receipt"
             android:layout_margin="8dp"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="8dp"
-            android:text="Activity 2"
+            android:text="View Receipts"
             android:id="@+id/button_act2" />
     </LinearLayout>
 
