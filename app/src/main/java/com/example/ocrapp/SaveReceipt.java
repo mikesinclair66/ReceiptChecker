@@ -90,11 +90,11 @@ public class SaveReceipt {
     @RequiresApi(api = Build.VERSION_CODES.N)
     /**
      * Get all keys in storage. Use this to iterate through the keys and call GetReceipt
-     *  To get all the receipts. Make sure to store all the keys somehow to for accessing them.
+     * To get all the receipts. Make sure to store all the keys somehow to for accessing them.
      */
     public static ArrayList<String> GetAllKeys(SharedPreferences pref) {
         ArrayList<String> keys = new ArrayList<>();
-        HashMap<String, String> receipts = GetAllReceipts(pref);
+        HashMap<String, String> receipts = GetAllReceipts(pref); // pref
         receipts.forEach((k, v) -> keys.add(k));
         return keys;
     }
