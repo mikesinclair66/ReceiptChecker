@@ -32,10 +32,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static String recDate;
     Button button_capture, button_copy, button_act2;
     TextView textview_data;
     Bitmap bitmap;
+
     private static final int REQUEST_CAMERA_CODE = 100;
+    public static double recTotal = 0;
+    //public String recDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         button_copy = findViewById(R.id.button_copy);
         textview_data = findViewById(R.id.text_data);
         button_act2 = (Button) findViewById(R.id.button_act2);
+
 
         button_act2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +101,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    private void getTextFromImage(Bitmap bitmap){
+    public void getTextFromImage(Bitmap bitmap){
+
+        double highest = 0;
+        String date = null;
+
         TextRecognizer recognizer = new TextRecognizer.Builder(this).build();
         if (!recognizer.isOperational()){
             Toast.makeText(MainActivity.this,"Error Occurred",Toast.LENGTH_SHORT).show();
@@ -114,23 +123,45 @@ public class MainActivity extends AppCompatActivity {
             }
             ParseTest.useRegexForPrices(stringBuilder.toString(), prices);
             if (!prices.isEmpty()) {
-                double highest = ParseTest.returnHighestDouble(prices);
+                highest = ParseTest.returnHighestDouble(prices);
+                setTotal(highest);
                 System.out.println("highest: " + highest);
             } else {
                 System.out.println("prices is empty");
             }
             ParseTest.useRegexForDate(stringBuilder.toString(), dates);
             if (!dates.isEmpty()) {
-                String date = dates.get(0);
+                date = dates.get(0);
+                setDate(date);
                 System.out.println("date: " + date);
             } else {
                 System.out.println("date is empty");
             }
             textview_data.setText(stringBuilder.toString());
             System.out.println("THIS IS THE STRING: " + stringBuilder);
+
+            //ReceiptActivity.AddReceipt();
+
             button_capture.setText("Retake");
             button_copy.setVisibility(View.VISIBLE);
+
         }
+    }
+
+    public void setTotal(double x){
+        recTotal = x;
+    }
+
+    public void setDate(String x){
+        recDate = x;
+    }
+
+    public static double getTotal(){
+        return recTotal;
+    }
+
+    public static String getDate(){
+        return recDate;
     }
 
     private void copyToClipBoard(String text){

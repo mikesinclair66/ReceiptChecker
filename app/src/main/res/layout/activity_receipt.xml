@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/receipt_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Receipt Number"
@@ -41,6 +42,7 @@
                 android:textSize="30dp" />
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
@@ -48,11 +50,20 @@
                 android:textSize="30dp" />
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:textColor="@color/white"
                 android:textSize="30dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="DELETE"
+                android:textSize="20dp"
+                android:id="@+id/delete"/>
 
         </LinearLayout>
 
