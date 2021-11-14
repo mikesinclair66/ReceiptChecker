@@ -26,13 +26,14 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
     public static final String MyPREFERENCES = "Receipt" ;
-    SharedPreferences sp = ReceiptActivity.this.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+    SharedPreferences sp;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
+        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //        datev = findViewById(R.id.date);
 //        pricev = findViewById(R.id.price);
 //
