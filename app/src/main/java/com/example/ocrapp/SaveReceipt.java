@@ -106,4 +106,13 @@ public class SaveReceipt {
     public static double GetTotal(SharedPreferences pref) {
         return pref.getFloat("total", 0); // pref
     }
+
+    /**
+     * Deletes all receipts, useful for debugging and testing
+     */
+    public static boolean DeleteAll(SharedPreferences pref) {
+        SharedPreferences.Editor editor = pref.edit(); // pref
+        editor.clear();
+        return editor.commit();
+    }
 }
