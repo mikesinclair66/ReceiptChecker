@@ -8,6 +8,7 @@ import android.util.Pair;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,14 +19,18 @@ public class SaveReceipt {
      * Add receipt to store, returns True if successful
      * Will also increment total by the added receipt amount.
      */
-    public static boolean AddReceipt(SharedPreferences pref, double receiptValue, String date) {
+    public static String AddReceipt(SharedPreferences pref, double receiptValue, String date) {
         SharedPreferences.Editor editor = pref.edit(); // pref
         double total = pref.getFloat("total", 0); // pref
         total += receiptValue;
         LocalDateTime current = LocalDateTime.now();
         editor.putString(current.toString(), date + "\n" + receiptValue);
         editor.putFloat("total", (float) total);
-        return editor.commit();
+        if (editor.commit()) {
+            return current.toString();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -68,7 +73,7 @@ public class SaveReceipt {
     }
 
     /**
-     * Get all recepits. Returns them as a hashmap with key as the key
+     * Get all receipts. Returns them as a hashmap with key as the key
      * and value as a string representing date and receipt value, delimited by a newline character
      */
     public static HashMap<String, String> GetAllReceipts(SharedPreferences pref) {
@@ -82,8 +87,20 @@ public class SaveReceipt {
         return result;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     /**
-     * Get the total of all receipts. Total is constantly updated with every add, edit, and delete, 
+     * Get all keys in storage. Use this to iterate through the keys and call GetReceipt
+     *  To get all the receipts. Make sure to store all the keys somehow to for accessing them.
+     */
+    public static ArrayList<String> GetAllKeys(SharedPreferences pref) {
+        ArrayList<String> keys = new ArrayList<>();
+        HashMap<String, String> receipts = GetAllReceipts(pref);
+        receipts.forEach((k, v) -> keys.add(k));
+        return keys;
+    }
+
+    /**
+     * Get the total of all receipts. Total is constantly updated with every add, edit, and delete,
      * so this just gets the value being stored
      */
     public static double GetTotal(SharedPreferences pref) {
