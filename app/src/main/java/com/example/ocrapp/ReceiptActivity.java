@@ -26,7 +26,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
     public static final String MyPREFERENCES = "Receipt" ;
-    SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+    SharedPreferences sp = ReceiptActivity.this.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
