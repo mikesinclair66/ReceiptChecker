@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".EditActivity">
 <LinearLayout
-    android:id="@+id/iterate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -24,16 +23,20 @@
         android:id="@+id/text_price"
         android:textSize="22sp"
         android:textColor="@color/black"
-        android:text="Price Goes Here"
+        android:hint="Price Goes Here"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text" />
     <EditText
         android:id="@+id/text_date"
         android:textSize="22sp"
         android:textColor="@color/black"
-        android:text="Date goes here"
+        android:hint="Date goes here"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="date" />
 
 </LinearLayout>
     <LinearLayout
@@ -48,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="Delete Receipt" />
+            android:text="Delete Receipt"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:layout_width="0dp"
@@ -56,7 +60,8 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Save Receipt"
-            android:id="@+id/button_save" />
+            android:id="@+id/button_save"
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
 </RelativeLayout>
