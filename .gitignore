@@ -1,15 +1,39 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# OS/IDE
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+.vscode
+.idea/codeStyles
+.idea/misc.xml
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/deploymentTargetDropDown.xml
+
+# Android Studio
+vcs.xml
 local.properties
+.cxx
+.externalNativeBuild
+/local.properties
+/captures
+
+# Built Application Files
+*.apk
+*.aar
+*.ap_
+*.aab
+*.iml
+
+# Java Class Files
+*.class
+
+# Gradle
+.gradle
+/build
+
+# Misc.
+*.log
+*.iml
+*.env
