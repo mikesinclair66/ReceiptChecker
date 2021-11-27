@@ -23,18 +23,19 @@ public class EditActivity extends AppCompatActivity {
     Button button_save, button_delete;
 
     public static final String MyPREFERENCES = "Receipt" ;
-    SharedPreferences sp;
+    SaveReceipt receiptSaver;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SaveReceipt.createInstance(sp);
+        receiptSaver = SaveReceipt.getInstance();
 
         button_delete = findViewById(R.id.button_delete);
         button_save = findViewById(R.id.button_save);
-
 
         viewPrice = findViewById(R.id.text_price);
         viewDate = findViewById(R.id.text_date);
@@ -49,7 +50,7 @@ public class EditActivity extends AppCompatActivity {
         System.out.println("EditActivity date: "+ date);
         System.out.println("EditActivity iterator: "+ receipt_num);
 
-        viewPrice.setText(Double.toString(price));
+        viewPrice.setText(String.format(String.valueOf(price)));
         viewDate.setText(date);
         viewReceiptNum.setText(receipt_num);
 
@@ -63,14 +64,14 @@ public class EditActivity extends AppCompatActivity {
         int rec_num_int = Integer.parseInt(rec_num) - 1;
         System.out.println("REC NUM: "+ rec_num);
         ArrayList<String> keys = new ArrayList<>();
-        keys = SaveReceipt.GetAllKeys(sp);
+        keys = receiptSaver.GetAllKeys();
         String key = keys.get(rec_num_int);
 
 
         button_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveReceipt.EditReceipt(sp, key, Double.parseDouble(viewPrice.getText().toString()) , viewDate.getText().toString());
+                receiptSaver.EditReceipt(key, Double.parseDouble(viewPrice.getText().toString()) , viewDate.getText().toString());
                 openActivityReceipt();
             }
         });
@@ -78,7 +79,7 @@ public class EditActivity extends AppCompatActivity {
         button_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveReceipt.DeleteReceipt(sp, key);
+                receiptSaver.DeleteReceipt(key);
                 openActivityReceipt();
             }
         });

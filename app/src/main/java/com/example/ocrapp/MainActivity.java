@@ -44,14 +44,15 @@ public class MainActivity extends AppCompatActivity {
     //public String recDate = null;
 
     public static final String MyPREFERENCES = "Receipt" ;
-    SharedPreferences sp;
+    SaveReceipt receiptSaver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
+        SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SaveReceipt.createInstance(sp);
+        receiptSaver = SaveReceipt.getInstance();
 
         button_capture = findViewById(R.id.button_capture);
         button_copy = findViewById(R.id.button_copy);
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+//                setDate("01/01/2011");
+//                setTotal(100.00);
                 saveReceipt(sp);
                 openActivity2();
             }
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void saveReceipt(SharedPreferences pref){
         if (getTotal() != 0 && getDate() != null){
-            SaveReceipt.AddReceipt(pref,getTotal(),getDate());
+            receiptSaver.AddReceipt(getTotal(),getDate());
         }
         setTotal(0);
         setDate(null);

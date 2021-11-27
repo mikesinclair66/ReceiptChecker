@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">OCRApp</string>
-    <string name="title_activity_edit">EditActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="receipt_number">Receipt Number Goes here</string>
+    <string name="price_number">Price Goes Here</string>
+    <string name="date_number">Date goes here</string>
+    <string name="delete_receipt">Delete Receipt</string>
+    <string name="save_receipt">Save Receipt</string>
+    <string name="receipt_image_to_text">Receipt Image to Text</string>
+    <string name="capture_receipt">Capture a Receipt</string>
+    <string name="save_receipt_but">Save Receipt</string>
+    <string name="view_receipt">View Receipts</string>
+    <string name="total_price">Total Price:</string>
+    <string name="price_text">999.99</string>
+    <string name="capture_new_receipt">Capture New Receipt</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

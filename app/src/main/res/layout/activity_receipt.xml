@@ -8,7 +8,6 @@
     tools:context=".ReceiptActivity">
 
     <ScrollView
-        android:id="@+id/receipt_scroll_v"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/total_price_bar"
@@ -30,7 +29,7 @@
             android:id="@+id/text_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="20dp"
             android:orientation="vertical">
 
@@ -51,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="Total Price:"
+            android:text="@string/total_price"
             android:background="@color/purple_500"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="30sp"
 
 
             />
@@ -66,10 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="999.99"
+            android:text="@string/price_text"
             android:background="@color/purple_500"
             android:textColor="@color/white"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
     </LinearLayout>
     <LinearLayout
@@ -84,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="Capture New Receipt" />
+            android:text="@string/capture_new_receipt" />
 
 
     </LinearLayout>
