@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                setDate("01/01/2011");
-                setTotal(100.00);
+//                setDate("01/01/2011");
+//                setTotal(100.00);
                 saveReceipt(sp);
                 openActivity2();
             }
