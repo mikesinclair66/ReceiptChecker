@@ -33,18 +33,18 @@ public class ReceiptActivity extends AppCompatActivity {
     int receipt_Iterator = 1;
     Button button_cap;
 
-
-
-
-    public static final String MyPREFERENCES = "Receipt" ;
-    SharedPreferences sp;
+    public static final String MyPREFERENCES = "Receipt";
+    SaveReceipt receiptSaver;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
-        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SaveReceipt.createInstance(sp);
+        receiptSaver = SaveReceipt.getInstance();
+
 //        datev = findViewById(R.id.date);
 //        pricev = findViewById(R.id.price);
 //
@@ -55,10 +55,10 @@ public class ReceiptActivity extends AppCompatActivity {
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<Pair<Double, String>> receipts = new ArrayList<>();
 
-        keys = SaveReceipt.GetAllKeys(sp);
+        keys = receiptSaver.GetAllKeys();
 
         for (String i : keys) {
-            receipts.add(SaveReceipt.GetReceipt(sp, i));
+            receipts.add(receiptSaver.GetReceipt(i));
         }
 
         LinearLayout linearLayout = findViewById(R.id.text_container);
@@ -117,7 +117,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
         }
         DecimalFormat df = new DecimalFormat("0.00");
-        String totalPriceText = df.format(SaveReceipt.GetTotal(sp));
+        String totalPriceText = df.format(receiptSaver.GetTotal());
         totalPricev = findViewById(R.id.price_total);
         totalPricev.setText(totalPriceText);
         //receiptScrollv.addView(linearLayout);
@@ -139,14 +139,14 @@ public class ReceiptActivity extends AppCompatActivity {
     }
 
     private void showAllReceipts() {
-        HashMap<String, String> entries = SaveReceipt.GetAllReceipts(sp);
+        HashMap<String, String> entries = receiptSaver.GetAllReceipts();
     }
 
     private void setOnClickGet(final Button btn, final String str){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveReceipt.GetReceipt(sp, str);
+                receiptSaver.GetReceipt(str);
             }
         });
     }
