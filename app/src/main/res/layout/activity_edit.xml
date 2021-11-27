@@ -13,7 +13,7 @@
         android:id="@+id/text_receipt_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Receipt Number Goes here"
+        android:text="@string/receipt_number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/text_price"
         android:textSize="22sp"
         android:textColor="@color/black"
-        android:hint="Price Goes Here"
+        android:hint="@string/price_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
@@ -32,7 +32,7 @@
         android:id="@+id/text_date"
         android:textSize="22sp"
         android:textColor="@color/black"
-        android:hint="Date goes here"
+        android:hint="@string/date_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="Delete Receipt"
+            android:text="@string/delete_receipt"
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="Save Receipt"
+            android:text="@string/save_receipt"
             android:id="@+id/button_save"
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>

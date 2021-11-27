@@ -50,7 +50,7 @@ public class EditActivity extends AppCompatActivity {
         System.out.println("EditActivity date: "+ date);
         System.out.println("EditActivity iterator: "+ receipt_num);
 
-        viewPrice.setText(Double.toString(price));
+        viewPrice.setText(String.format(String.valueOf(price)));
         viewDate.setText(date);
         viewReceiptNum.setText(receipt_num);
 

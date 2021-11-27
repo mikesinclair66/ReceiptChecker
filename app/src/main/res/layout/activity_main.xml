@@ -22,7 +22,7 @@
             android:id="@+id/text_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Receipt Image to Text"
+            android:hint="@string/receipt_image_to_text"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:textColor="@color/black"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:hint="Capture a Receipt"
+            android:hint="@string/capture_receipt"
             />
         <Button
             android:visibility="gone"
@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Save Receipt"
+            android:hint="@string/save_receipt_but"
             android:layout_margin="8dp"
             style="?android:attr/buttonBarButtonStyle" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:hint="View Receipts"
+            android:hint="@string/view_receipt"
              />
     </LinearLayout>
 
