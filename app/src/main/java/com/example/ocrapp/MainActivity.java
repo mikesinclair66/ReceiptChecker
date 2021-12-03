@@ -163,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
             textview_data.setText(stringBuilder.toString());
             System.out.println("THIS IS THE STRING: " + stringBuilder);
-            button_capture.setText("Retake");
+            String retakeText = "Retake";
+            button_capture.setText(retakeText);
             button_copy.setVisibility(View.VISIBLE);
         }
     }

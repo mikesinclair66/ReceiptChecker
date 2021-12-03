@@ -94,21 +94,25 @@ public class ReceiptActivity extends AppCompatActivity {
 
 
             TextView receiptNumView = new TextView(this);
-            receiptNumView.setText("Receipt Number: " + Integer.toString(receipt_Iterator));
+            String receiptNumViewText = "Receipt Number: " + Integer.toString(receipt_Iterator);
+            receiptNumView.setText(receiptNumViewText);
             receiptNumView.setTextColor(getResources().getColor(R.color.white));
 
 
             TextView textView = new TextView(this);
-            textView.setText("Price: " + j.first);
+            String priceText = "Price: " + j.first;
+            textView.setText(priceText);
             textView.setTextColor(getResources().getColor(R.color.white));
 
             TextView dateview = new TextView(this);
-            dateview.setText("Date: " + j.second);
+            String dateviewText = "Date: " + j.second;
+            dateview.setText(dateviewText);
             dateview.setTextColor(getResources().getColor(R.color.white));
 //            linearLayout.addView(receiptNumView);
 //            linearLayout.addView(textView);
 //            linearLayout.addView(dateview);
-            buttonReceipt.setText("Receipt Number: " + Integer.toString(receipt_Iterator) + "\nPrice: " + j.first + "\nDate: " + j.second );
+            String buttonReceiptText = "Receipt Number: " + Integer.toString(receipt_Iterator) + "\nPrice: " + j.first + "\nDate: " + j.second;
+            buttonReceipt.setText(buttonReceiptText);
             buttonReceipt.setTextColor(getResources().getColor(R.color.black));
             linearLayout.addView(buttonReceipt);
 
